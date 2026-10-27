@@ -1,0 +1,173 @@
+/* ROAD MECHANIC - one stylesheet for both pages (replaces Hom.css + old mechanic.css) */
+
+/* ---------- Base ---------- */
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #eaf1fb;
+  color: #1a1a6e;
+}
+
+header {
+  background: #0a0a3d;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  font-size: 28px;
+}
+
+h3 {
+  padding: 20px 20px 0 20px;
+  margin: 0;
+}
+
+ul {
+  padding: 0 20px 20px 40px;
+  line-height: 1.6;
+}
+
+/* Links: centered, full-width tap area */
+a {
+  display: block;
+  text-align: center;
+  color: #1a1a6e;
+  text-decoration: underline;
+  margin: 15px 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  background: white;
+  margin-top: 30px;
+}
+
+/* ---------- Home page ---------- */
+.hero-img {
+  display: block;
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  margin-top: 2rem;
+}
+
+.search-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.search-form label {
+  display: block;
+  margin: 14px 0 4px;
+  font-weight: bold;
+}
+
+select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  color: #000;
+}
+
+select:disabled {
+  opacity: 0.6;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  background: #1a1a6e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active {
+  background: #0a0a3d;
+}
+
+#formError {
+  color: #b00020;
+  min-height: 1.2em;
+  margin: 8px 0 0;
+}
+
+/* ---------- Results page ---------- */
+#summary {
+  margin: 8px 20px 0;
+  font-weight: bold;
+}
+
+.output {
+  margin: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  min-height: 40px;
+}
+
+#output {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.mechanic-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  background: #f7f9fd;
+}
+
+.mechanic-card:last-child {
+  margin-bottom: 0;
+}
+
+.mechanic-card h3 {
+  padding: 0;
+  margin: 0 0 6px;
+}
+
+.mechanic-card p {
+  margin: 4px 0;
+}
+
+.call-btn {
+  display: block;
+  margin: 12px 0 0;
+  padding: 12px;
+  background: #1a7f37;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+.call-btn:active {
+  background: #14602a;
+}
+
+/* ---------- Keyboard focus ---------- */
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #4a6cf7;
+  outline-offset: 2px;
+}

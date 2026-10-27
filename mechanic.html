@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OGA MECHANIC</title>
+  <link rel="stylesheet" href="mechanic.css">
+</head>
+
+<body>
+  <header>
+    <h1>OGA MECHANIC</h1>
+  </header>
+
+  <img src="mec.png" alt="Mechanic and tow truck illustration" class="hero-img">
+
+  <main>
+    <h3>What does it do?</h3>
+    <ul>
+      <li>Find nearby road mechanics quickly</li>
+      <li>Get help during vehicle emergencies</li>
+      <li>Book a mechanic for later</li>
+    </ul>
+
+    <form class="search-form" id="searchForm">
+      <label for="lgaSelect">LGA</label>
+      <select id="lgaSelect">
+        <option value="">Select LGA</option>
+      </select>
+
+      <label for="townSelect">Town / Community</label>
+      <select id="townSelect" disabled>
+        <option value="">Select LGA first</option>
+      </select>
+
+      <p id="formError" role="alert"></p>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <p>
+    
+      <a href="mailto: excelnwieekpughi@gmail.com?subject=Add%20Me%20as%20a%20Mechanic&body=Name:%0AState:%0ALGA:%0ATown:%0ALandmark:%0ASpecialty:%0APhone:">
+        Are you a mechanic? Get listed
+      </a>
+    </p>
+  </main>
+
+  <footer>
+    &copy;2026. All rights reserved.
+  </footer>
+
+  <script>
+    // Each LGA and its towns
+    const lgaTowns = {
+      "Obio/Akpor": ["Elelenwo", "Rumuola", "Choba", "Woji", "Rumuomasi", "Rumuokwurusi"],
+      "Port Harcourt": ["Diobu", "Mile 1", "Mile 3", "Borokiri"],
+      "Eleme": ["Alode", "Ogale", "Onne"]
+    };
+
+    const lgaSelect = document.getElementById("lgaSelect");
+    const townSelect = document.getElementById("townSelect");
+    const formError = document.getElementById("formError");
+
+    function addOption(select, text, value) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = text;
+      select.appendChild(option);
+    }
+
+    // Fill the LGA dropdown once
+    for (const lga in lgaTowns) {
+      addOption(lgaSelect, lga, lga);
+    }
+
+    // Build the town list for the chosen LGA (and re-select a town if given)
+    function buildTowns(keepTown) {
+      townSelect.innerHTML = "";
+      const towns = lgaTowns[lgaSelect.value] || [];
+
+      if (towns.length === 0) {
+        addOption(townSelect, "Select LGA first", "");
+        townSelect.disabled = true;
+        return;
+      }
+
+      addOption(townSelect, "Select Town/Community", "");
+      towns.forEach(function (town) {
+        addOption(townSelect, town, town);
+      });
+      townSelect.disabled = false;
+
+      if (keepTown && towns.indexOf(keepTown) !== -1) {
+        townSelect.value = keepTown;
+      }
+    }
+
+    // When LGA changes, refill the town dropdown
+    lgaSelect.addEventListener("change", function () {
+      formError.textContent = "";
+      buildTowns("");
+    });
+
+    // Runs on first load AND when the user comes back with the Back button.
+    // The browser restores the LGA but not the towns, so rebuild them here.
+    window.addEventListener("pageshow", function () {
+      let savedLGA = "", savedTown = "";
+      try {
+        savedLGA = sessionStorage.getItem("rm_lga") || "";
+        savedTown = sessionStorage.getItem("rm_town") || "";
+      } catch (err) {}
+
+      if (!lgaSelect.value && savedLGA) lgaSelect.value = savedLGA;
+      buildTowns(townSelect.value || savedTown);
+    });
+
+    // Search: check both are chosen, then go to the results page
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!lgaSelect.value) {
+        formError.textContent = "Please select your LGA.";
+        return;
+      }
+      if (!townSelect.value) {
+        formError.textContent = "Please select your town or community.";
+        return;
+      }
+
+      try {
+        sessionStorage.setItem("rm_lga", lgaSelect.value);
+        sessionStorage.setItem("rm_town", townSelect.value);
+      } catch (err) {}
+
+      // File name must match exactly (Results.html vs results.html) on GitHub Pages
+      window.location.href =
+        "Results.html?lga=" + encodeURIComponent(lgaSelect.value) +
+        "&town=" + encodeURIComponent(townSelect.value);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OGA MECHANIC - Results</title>
+  <link rel="stylesheet" href="mechanic.css">
+  <script src="mechanic.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>OGA MECHANIC</h1>
+  </header>
+
+  <main>
+    <h3>Search Results</h3>
+    <p id="summary"></p>
+
+    <div class="output">
+      <div id="output"></div>
+    </div>
+
+    <a class="back-link" href="index.html">← Search again</a>
+  </main>
+
+  <footer>
+    &copy;2026. All rights reserved.
+  </footer>
+
+  <script>
+    // Stops weird characters from breaking the page
+    function esc(text) {
+      const div = document.createElement("div");
+      div.textContent = text == null ? "" : text;
+      return div.innerHTML;
+    }
+
+    // Read what the user picked on the search page
+    const params = new URLSearchParams(window.location.search);
+    const selectedLGA = (params.get("lga") || "").toLowerCase().trim();
+    const selectedTown = (params.get("town") || "").toLowerCase().trim();
+
+    const output = document.getElementById("output");
+    const summary = document.getElementById("summary");
+
+    if (!selectedLGA || !selectedTown) {
+      summary.textContent = "Pick your LGA and community first.";
+      output.innerHTML = "";
+    } else {
+      let result = "";
+      let count = 0;
+
+      for (let i = 0; i < mechanics.length; i++) {
+        const m = mechanics[i];
+
+        if (
+          String(m.lga).toLowerCase().trim() === selectedLGA &&
+          String(m.location).toLowerCase().trim() === selectedTown
+        ) {
+          count++;
+          // keep only digits and + so the phone dialer works
+          const dialNumber = String(m.phone).replace(/[^\d+]/g, "");
+
+          result += `
+            <div class="mechanic-card">
+              <h3>${esc(m.name)}</h3>
+              <p><strong>Specialty:</strong> ${esc(m.specialty)}</p>
+              <p>📍 ${esc(m.landmark)}, ${esc(m.location)}</p>
+              <p><strong>Phone:</strong> ${esc(m.phone)}</p>
+              <a href="tel:${dialNumber}" class="call-btn">📞 Call Now</a>
+            </div>
+          `;
+        }
+      }
+
+      if (count === 0) {
+        summary.textContent = "";
+        output.innerHTML = "<p>No mechanic found for that location yet.</p>";
+      } else {
+        summary.textContent = count + (count === 1 ? " mechanic" : " mechanics") + " near you:";
+        output.innerHTML = result;
+      }
+    }
+  </script>
+</body>
+</html>
