@@ -75,8 +75,57 @@ const mechanics = [
     name: "",
     phone: "",
     lga: "Obio/Akpor",
+    location: "woji",
+    specialty: "Vulcanizer",
+    landmark: "beside Constance energy filling station"
+  },
+  {
+    name: "",
+    phone: "",
+    lga: "Obio/Akpor",
+    location: "woji",
+    specialty: "Vulcanizer",
+    landmark: "Beside elitor Street"
+  },
+  {
+    name: "",
+    phone: "",
+    lga: "Obio/Akpor",
+    location: "woji",
+    specialty: "Vulcanizer",
+    landmark: "Beside yemsonat filling station trans-"
+  },
+  {
+    name: "",
+    phone: "",
+    lga: "Obio/Akpor",
+    location: "woji",
+    specialty: "Vulcanizer",
+    landmark: "Beside Chelsea filling station trans-"
+  },
+  {
+    name: "",
+    phone: "",
+    lga: "Obio/Akpor",
     location: "Elelenwo",
     specialty: "Vulcanizer",
     landmark: "Beside Bold Living Christian Center or Alphonso Hospital"
+  },
+  {
+    name: "",
+    phone: "",
+    lga: "Obio/Akpor",
+    location: "Woji",
+    specialty: "Vulcanizer",
+    landmark:"no 3 ykc filling station beside gathering of the Kings ministry"
+  },
+  
+  { name: "",
+    phone: "",
+    lga: "Obio/Akpor",
+    location: "Rumuokwurusi",
+    specialty: "Vulcanizer",
+    landmark: "school road junction opposite mega twins world"
   }
 ];
+    
