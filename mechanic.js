@@ -1,7 +1,7 @@
 const mechanics = [
   {
     name: "",
-    phone: "09120004593",
+    phone: "",
     lga: "Obio/Akpor",
     location: "Woji",
     specialty: "Vulcanizer",
