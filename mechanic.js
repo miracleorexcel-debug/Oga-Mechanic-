@@ -1,6 +1,6 @@
 const mechanics = [
   {
-    name: "",
+    name: "09120004593",
     phone: "",
     lga: "Obio/Akpor",
     location: "Woji",
